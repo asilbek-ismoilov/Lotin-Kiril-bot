@@ -1394,7 +1394,7 @@ def to_latin(text):
 
 
 
-def transliterate(text):
+def transliter(text):
     latin = 'qwertyuiopasdfghjklzxcvbnm'
     cril = 'қwертюиопасдфгҳжклзхcвбнм'
     latin_count = sum([text.count(i) for i in latin])

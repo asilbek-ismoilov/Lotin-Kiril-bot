@@ -24,11 +24,6 @@ CHANNELS = config.CHANNELS
 
 dp = Dispatcher()
 
-@dp.message(F.text)
-async def transliter_text(message:Message):
-    translation = message.text
-    translation = transliter(translation)
-    await message.answer(translation)
     
 
 @dp.message(CommandStart())
@@ -103,6 +98,11 @@ async def send_advert(message:Message,state:FSMContext):
     await message.answer(f"Reklama {count}ta foydalanuvchiga yuborildi")
     await state.clear()
 
+@dp.message(F.text)
+async def transliter_text(message:Message):
+    translation = message.text
+    translation = transliter(translation)
+    await message.answer(translation)
 
 @dp.startup()
 async def on_startup_notify(bot: Bot):

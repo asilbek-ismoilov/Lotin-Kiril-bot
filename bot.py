@@ -12,7 +12,7 @@ from baza.sqlite import Database
 from filters.admin import IsBotAdminFilter
 from filters.check_sub_channel import IsCheckSubChannels
 from keyboard_buttons import admin_keyboard
-from aiogram.fsm.context import FSMContext #new
+from aiogram.fsm.context import FSMContext 
 from states.reklama import Adverts
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 import time 
@@ -24,7 +24,8 @@ CHANNELS = config.CHANNELS
 
 dp = Dispatcher()
 
-    
+
+
 
 @dp.message(CommandStart())
 async def start_command(message:Message):
@@ -32,10 +33,9 @@ async def start_command(message:Message):
     telegram_id = message.from_user.id
     try:
         db.add_user(full_name=full_name,telegram_id=telegram_id) #foydalanuvchi bazaga qo'shildi
-        await message.answer(text="Assalomu alaykum, Bu bot ismingizni manosini topib beradi.\nBotdan foydalanish uchun ismingizni kiriting!")
+        await message.answer(text="Assalomu alaykum, botimizga hush kelibsiz")
     except:
         await message.answer(text="Assalomu alaykum")
-
 
 
 @dp.message(IsCheckSubChannels())
@@ -98,11 +98,13 @@ async def send_advert(message:Message,state:FSMContext):
     await message.answer(f"Reklama {count}ta foydalanuvchiga yuborildi")
     await state.clear()
 
+
 @dp.message(F.text)
 async def transliter_text(message:Message):
     translation = message.text
     translation = transliter(translation)
     await message.answer(translation)
+
 
 @dp.startup()
 async def on_startup_notify(bot: Bot):
